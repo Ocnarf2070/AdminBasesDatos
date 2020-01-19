@@ -1,0 +1,26 @@
+1)
+No salía nada la primera vez porque seguramente el alumno no había hecho un commit. 
+Lo que ocurrió es que el alumno ya había hecho el commit, por lo que ya está confirmada la transacción
+y se puede ver lo que ha hecho.
+
+2)Lectura fantasma (phantomm read)
+
+3)Sí podemos evitarlo si hacemos que el nivel de aislamiento en Serializable, ya que este
+aislamineto no permite las lecturas fantasmas.
+
+4)Sí es posible, con el Share Table Lock.
+Instrucción:
+LOCK TABLE RESULTADO IN SHARE MODE NOWAIT;
+Se desbloquea cuando el profesor haya hecho un commit o un rollback.
+
+5)AUDIT INSERT ON RESULTADO BY SESSION;
+SELECT * FROM DBA_AUDIT_OBJECT;
+A partir de ahí vemos que lo que han hecho cada usuario.
+
+6)La unica opcion que hay es hacer un acceso al tiempo de Flashback. Lo único que
+tiene que tener es un timestamp válido y que fuera justamente antes de hacer esa
+transacción.
+También habria solución, que en este caso sería un Flashback de borrado.
+
+7)Podría hacer un Backup Lógico o un Backup Físico.
+Lo más sencillo es hacer un Backup Lógico usando el programa Export.
